@@ -1,0 +1,383 @@
+:root {
+    --primary: #2563eb;
+    --primary-glow: rgba(37, 99, 235, 0.4);
+    --primary-dark: #1d4ed8;
+    --danger: #dc2626;
+    --danger-hover: #ef4444;
+    --bg-dark: #070b14;
+    --bg-card: #0e1626;
+    --border-color: rgba(255, 255, 255, 0.08);
+    --text-main: #f1f5f9;
+    --text-muted: #94a3b8;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+body { background-color: var(--bg-dark); color: var(--text-main); display: flex; flex-direction: column; min-height: 100vh; }
+
+/* Pantalla de Carga Estilo Discord (Intacta y funcional) */
+#loader {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: #070b14; display: flex; justify-content: center; align-items: center;
+    z-index: 9999; transition: opacity 0.4s ease;
+}
+.loader-content { text-align: center; color: white; padding: 20px; }
+.discord-logo { font-size: 75px; color: white; margin-bottom: 25px; filter: drop-shadow(0 0 15px rgba(37, 99, 235, 0.6)); }
+.loader-quote { font-style: italic; font-size: 1.15rem; font-weight: 700; letter-spacing: 0.8px; margin-bottom: 12px; color: #cbd5e1; text-transform: uppercase; }
+.loader-status { font-size: 0.8rem; letter-spacing: 2.5px; color: #64748b; font-weight: 600; text-transform: uppercase; }
+
+/* Header Estilo Centro de Mando (Igual a la foto) */
+.main-header { 
+    background: linear-gradient(135deg, #070b14 0%, #0a1329 100%); 
+    color: white; 
+    padding: 1.8rem 2.5rem; 
+    border-bottom: 2px solid #1e3a8a; 
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.8);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+/* Efecto del mapa del mundo tecnológico difuminado a la derecha */
+.main-header::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 60%;
+    background: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1400&auto=format&fit=crop') no-repeat right center;
+    background-size: cover;
+    opacity: 0.35;
+    mask-image: linear-gradient(to left, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 100%);
+    -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 100%);
+    pointer-events: none;
+}
+
+.header-content {
+    position: relative;
+    z-index: 2;
+}
+
+.header-content h1 { 
+    font-size: 1.85rem; 
+    font-weight: 700; 
+    display: flex; 
+    align-items: center; 
+    gap: 12px; 
+    letter-spacing: 0.3px;
+}
+
+.header-content h1 i {
+    color: #ffffff;
+    font-size: 1.6rem;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.4));
+}
+
+.header-content h1 .badge-utmach { 
+    color: #60a5fa; 
+    font-size: 0.85rem; 
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    background: rgba(29, 78, 216, 0.4); 
+    border: 1px solid rgba(59, 130, 246, 0.5); 
+    padding: 4px 12px; 
+    border-radius: 6px; 
+    box-shadow: 0 0 12px rgba(37, 99, 235, 0.35);
+}
+
+.header-content p { 
+    color: var(--text-muted); 
+    font-size: 0.95rem; 
+    margin-top: 6px; 
+    font-weight: 400;
+}
+
+/* Contenedor Principal */
+.app-container { display: flex; flex: 1; max-width: 1400px; margin: 2rem auto; width: 95%; gap: 2rem; }
+.card-shadow { background: var(--bg-card); border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.6); border: 1px solid var(--border-color); }
+
+/* Sidebar y Menú Lateral Actualizado con Animación */
+.sidebar { width: 300px; padding: 1.5rem; height: fit-content; background: var(--bg-card); display: flex; flex-direction: column; gap: 8px; }
+.sidebar h3 { font-size: 0.85rem; margin-bottom: 4px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; border-bottom: none; padding-bottom: 0; font-weight: 600; }
+.menu-line { width: 35px; height: 3px; background: var(--primary); margin-bottom: 15px; border-radius: 2px; }
+
+/* Botones del Menú con animación fluida */
+.menu-btn {
+    position: relative;
+    display: flex; align-items: center; gap: 14px; width: 100%; text-align: left;
+    background: rgba(15, 23, 42, 0.5); border: 1px solid rgba(51, 65, 85, 0.4); color: var(--text-main); padding: 0.9rem 1rem;
+    cursor: pointer; font-weight: 500; font-size: 0.95rem; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 12px; margin-bottom: 0.5rem; outline: none;
+}
+.menu-btn i { color: #3b82f6; font-size: 1.15rem; transition: transform 0.3s ease; }
+
+/* Hover con animación chula */
+.menu-btn:hover { background: rgba(30, 41, 59, 0.8); border-color: rgba(59, 130, 246, 0.6); color: #fff; transform: translateX(4px); }
+.menu-btn:hover i { transform: scale(1.1); }
+
+/* Estado Activo con la barrita brillante lateral */
+.menu-btn.active {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    border-color: #3b82f6; color: white;
+    box-shadow: 0 4px 20px rgba(37, 99, 235, 0.35);
+}
+.menu-btn.active i { color: #ffffff; }
+.menu-btn.active::before {
+    content: ''; position: absolute; left: -6px; top: 50%; transform: translateY(-50%);
+    width: 5px; height: 60%; background: #22d3ee; border-radius: 4px; box-shadow: 0 0 12px #22d3ee;
+}
+
+/* Botón Especial de Salir (Rojo en modo oscuro) */
+.menu-btn.exit-btn {
+    background: rgba(127, 29, 29, 0.15); border-color: rgba(185, 28, 28, 0.3); color: #fca5a5; margin-top: 10px;
+}
+.menu-btn.exit-btn i { color: #f87171; }
+.menu-btn.exit-btn:hover { background: rgba(127, 29, 29, 0.35); border-color: rgba(239, 68, 68, 0.6); color: #fff; transform: translateX(4px); }
+.menu-btn.exit-btn.active, .menu-btn.exit-btn:active { background: var(--danger); border-color: var(--danger); color: white; }
+
+/* Panel de Resultados dinámico (Tarjeta Oscura Principal) */
+.card { padding: 2.5rem; flex: 1; background: var(--bg-card); border-radius: 16px; border: 1px solid var(--border-color); box-shadow: 0 10px 30px rgba(0,0,0,0.6); animation: cardEntrance 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+.card h2 { color: var(--text-main); font-size: 1.5rem; margin-bottom: 1.5rem; font-weight: 700; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--border-color); padding-bottom: 1rem; }
+
+/* Tablas, Inputs y Formularios en Modo Oscuro Total */
+table { width: 100%; border-collapse: collapse; margin-top: 1.2rem; background: var(--bg-card); border-radius: 10px; overflow: hidden; border: 1px solid var(--border-color); }
+th, td { padding: 14px 18px; text-align: left; border-bottom: 1px solid var(--border-color); color: var(--text-main); }
+th { background: #070b14; color: #60a5fa; font-weight: 600; font-size: 0.9rem; }
+tr:nth-child(even) { background-color: rgba(255, 255, 255, 0.01); }
+tr:hover { background-color: rgba(255, 255, 255, 0.03); }
+
+input, select { 
+    width: 100%; padding: 0.85rem 1rem; margin-top: 0.4rem; margin-bottom: 1.2rem; 
+    background: #070b14; border: 1.5px solid var(--border-color); border-radius: 10px; 
+    font-size: 0.95rem; color: var(--text-main); transition: all 0.2s; 
+}
+input:focus, select:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-glow); }
+
+button[onclick], button[type="submit"] { 
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); 
+    color: white; border: none; padding: 0.85rem 1.8rem; border-radius: 10px; 
+    cursor: pointer; font-weight: 600; font-size: 0.95rem; transition: all 0.2s; 
+    margin-top: 0.5rem; box-shadow: 0 4px 15px var(--primary-glow); 
+}
+button[onclick]:hover, button[type="submit"]:hover { filter: brightness(1.1); transform: translateY(-1px); }
+button[onclick]:active, button[type="submit"]:active { transform: scale(0.98); }
+
+/* --- ANIMACIONES Y ESTILOS PRO PARA EL REPORTE DE INCIDENTES --- */
+@keyframes cardEntrance {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.report-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.8rem;
+}
+
+.meta-box {
+    background: rgba(7, 11, 20, 0.6);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    border-radius: 12px;
+    padding: 1rem 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.meta-box:hover {
+    border-color: rgba(59, 130, 246, 0.5);
+    box-shadow: 0 4px 20px rgba(37, 99, 235, 0.15);
+    transform: translateY(-2px);
+}
+
+.meta-box span.label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 4px;
+}
+
+.meta-box span.value {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.meta-box span.value.critical {
+    color: #ef4444;
+    text-shadow: 0 0 10px rgba(239, 68, 68, 0.4);
+}
+
+.math-breakdown-box {
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(7, 11, 20, 0.9) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-left: 4px solid var(--primary);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.8rem;
+}
+
+.math-breakdown-box h4 {
+    font-size: 0.9rem;
+    color: #60a5fa;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.math-breakdown-box ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.math-breakdown-box li {
+    font-size: 0.95rem;
+    color: #cbd5e1;
+    padding: 6px 10px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 6px;
+    border-left: 2px solid rgba(59, 130, 246, 0.4);
+}
+
+.math-breakdown-box .total-score {
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px dashed rgba(255, 255, 255, 0.1);
+    font-weight: 700;
+    color: #ffffff;
+    font-size: 1.05rem;
+}
+
+.operation-terminal {
+    background: rgba(220, 38, 38, 0.06);
+    border: 1px solid rgba(220, 38, 38, 0.25);
+    border-radius: 12px;
+    padding: 1.2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.operation-terminal .alert-header {
+    color: #f87171;
+    font-weight: 700;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.operation-terminal .terminal-line {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9rem;
+    color: #94a3b8;
+}
+
+.operation-terminal .terminal-line strong {
+    color: #f1f5f9;
+}
+
+/* =========================================
+   MODO RESPONSIVO (Adaptable a Celulares)
+   ========================================= */
+@media (max-width: 768px) {
+    /* Forzar que el contenedor principal apile los elementos verticalmente */
+    .app-container {
+        flex-direction: column !important;
+        display: flex !important;
+        padding: 10px;
+    }
+
+    /* El menú lateral ocupa todo el ancho en celulares */
+    .sidebar {
+        width: 100% !important;
+        margin-bottom: 15px;
+    }
+
+    /* El panel de resultados se ajusta al ancho de la pantalla */
+    #panel-resultado, .card {
+        width: 100% !important;
+        box-sizing: border-box;
+        padding: 15px !important;
+    }
+
+    /* El header se acomoda en columna para que el logo no estorbe */
+    .main-header {
+        flex-direction: column !important;
+        text-align: center;
+        gap: 10px;
+        padding: 15px !important;
+    }
+
+    .main-header img {
+        margin: 0 auto;
+    }
+
+    /* Ajustar las cuadrículas de metadatos para que no se desborden */
+    .report-meta-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* Forzar que el mapa y los detalles salgan abajo (en columna) en móviles */
+    #panel-resultado > div,
+    #panel-resultado .row,
+    #panel-resultado .map-layout,
+    #panel-resultado [style*="display: flex"],
+    #panel-resultado [style*="display:grid"] {
+        flex-direction: column !important;
+        grid-template-columns: 1fr !important;
+        display: flex !important;
+        width: 100% !important;
+        gap: 15px !important;
+    }
+
+    /* --- SOLUCIÓN DEFINITIVA: ESCALADO NATIVO SIN CORTES --- */
+    #panel-resultado {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+
+    .cartesian-container, 
+    #panel-resultado div[style*="position"],
+    #panel-resultado .map-wrapper {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        aspect-ratio: 1 / 1 !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        margin: 0 auto !important;
+        position: relative !important;
+        overflow: visible !important;
+    }
+
+    /* El canvas ahora se encarga de reducirse proporcionalmente mostrando todo el plano */
+    #panel-resultado canvas {
+        width: 100% !important;
+        height: 100% !important;
+        max-width: 100% !important;
+        max-height: 100% !important;
+        aspect-ratio: 1 / 1 !important;
+        transform: none !important;
+        object-fit: contain !important;
+        background: radial-gradient(circle at center, #0f172a 0%, #070b14 100%) !important;
+        border: 1.5px solid rgba(59, 130, 246, 0.5) !important;
+        border-radius: 12px !important;
+        box-shadow: 0 0 20px rgba(37, 99, 235, 0.25) !important;
+        margin: 0 auto !important;
+    }
+
+    #panel-resultado .badge-utmach, 
+    #panel-resultado p {
+        word-break: break-word;
+    }
+}

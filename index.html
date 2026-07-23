@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>OrenseGuard - UTMACH</title>
+
+    <!-- Bibliotecas de Iconos y Animaciones de Alta Gama -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+    <!-- Tu CSS personalizado -->
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body class="animate__animated animate__fadeIn">
+
+
+
+    <!-- Pantalla de Carga con tu Logo -->
+
+    <div id="loader">
+
+        <div class="loader-content animate__animated animate__pulse animate__infinite" style="text-align: center;">
+
+            <img src="logo.png" alt="OrenseGuard Logo" style="max-width: 140px; height: auto; border-radius: 10px; margin-bottom: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.5);">
+
+            <p class="loader-quote">CARGANDO ORENSEGUARD.</p>
+
+            <p class="loader-status">INICIALIZANDO PROTOCOLOS DE PATRULLAJE...</p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Header Principal (Texto Original Izquierda, Logo Extremo Derecho) -->
+
+    <header class="main-header" style="display: flex; justify-content: space-between; align-items: center; padding-right: 30px;">
+
+        <div class="header-content">
+
+            <h1><i class="fa-solid fa-shield-halved"></i> OrenseGuard <span class="badge-utmach">UTMACH</span></h1>
+
+            <p>Sistema Avanzado de Monitoreo y Gestión Operativa</p>
+
+        </div>
+
+        <!-- Logo mandado al otro extremo -->
+
+        <img src="logo.png" alt="Logo Proyecto" style="height: 75px; width: auto; border-radius: 10px; box-shadow: 0 0 15px rgba(124, 252, 0, 0.2);">
+
+    </header>
+
+
+
+    <!-- Contenedor Principal con Menú Lateral -->
+
+    <div class="app-container">
+
+        <!-- Menú Lateral -->
+
+        <nav class="sidebar card-shadow">
+
+            <h3><i class="fa-solid fa-bars-staggered"></i> Menú de Control</h3>
+
+            <div class="menu-line"></div>
+
+            <button class="menu-btn active" onclick="ejecutarOpcion(1, this)"><i class="fa-solid fa-triangle-exclamation"></i> 1. Registrar Incidente</button>
+
+            <button class="menu-btn" onclick="ejecutarOpcion(2, this)"><i class="fa-solid fa-chart-line"></i> 2. Estado de Zonas</button>
+
+            <button class="menu-btn" onclick="ejecutarOpcion(3, this)"><i class="fa-solid fa-table-cells"></i> 3. Matriz y Estadísticas</button>
+
+            <button class="menu-btn" onclick="ejecutarOpcion(4, this)"><i class="fa-solid fa-truck-fast"></i> 4. Liberar Patrullas</button>
+
+            <button class="menu-btn" onclick="ejecutarOpcion(5, this)"><i class="fa-solid fa-clipboard-list"></i> 5. Registro de Incidentes</button>
+
+            <button class="menu-btn exit-btn" onclick="ejecutarOpcion(6, this)"><i class="fa-solid fa-power-off"></i> 6. Salir del Sistema</button>
+
+        </nav>
+
+
+
+        <!-- Panel de Resultados con el nuevo diseño integrado -->
+
+        <main id="panel-resultado" class="card card-shadow animate__animated animate__fadeIn">
+
+            <h2><i class="fa-solid fa-file-shield"></i> Reporte de Incidente Registrado</h2>
+
+           
+
+            <!-- Cuadros de metadatos organizados -->
+
+            <div class="report-meta-grid">
+
+                <div class="meta-box">
+
+                    <span class="label">Zona Afectada</span>
+
+                    <span class="value">Las Brisas</span>
+
+                </div>
+
+                <div class="meta-box">
+
+                    <span class="label">Índice de Riesgo</span>
+
+                    <span class="value">90 puntos</span>
+
+                </div>
+
+                <div class="meta-box">
+
+                    <span class="label">Clasificación</span>
+
+                    <span class="value critical">Crítico</span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Caja del desglose matemático -->
+
+            <div class="math-breakdown-box">
+
+                <h4><i class="fa-solid fa-calculator"></i> Reporte Matemático del Incidente</h4>
+
+                <ul>
+
+                    <li>+ 25 puntos (Por ser Acoso)</li>
+
+                    <li>+ 30 puntos (Por uso de arma)</li>
+
+                    <li>+ 15 puntos (Por horario nocturno/madrugada)</li>
+
+                    <li>+ 20 puntos (Por múltiples afectados)</li>
+
+                </ul>
+
+                <div class="total-score">TOTAL = 90 puntos.</div>
+
+            </div>
+
+
+
+            <!-- Terminal de estatus y patrullas -->
+
+            <div class="operation-terminal">
+
+                <div class="alert-header">
+
+                    <i class="fa-solid fa-triangle-exclamation"></i> PRIORIDAD ALTA: Se requiere atención inmediata. Buscando patrulla...
+
+                </div>
+
+                <div class="terminal-line">&gt;&gt; <strong>UNIDAD ASIGNADA:</strong> Unidad 3</div>
+
+                <div class="terminal-line">&gt;&gt; Enviando patrulla más cercana a 1.80 km.</div>
+
+                <div class="terminal-line">&gt;&gt; <strong>ESTADO DEL REPORTE:</strong> En atención</div>
+
+            </div>
+
+        </main>
+
+    </div>
+
+
+
+    <!-- Script del Loader A Prueba de Fallos -->
+
+   <script>
+
+        function arrancarSistema() {
+
+            const loader = document.getElementById('loader');
+
+            if (loader) {
+
+                setTimeout(() => {
+
+                    loader.style.opacity = '0';
+
+                    setTimeout(() => {
+
+                        loader.style.display = 'none';
+
+                    }, 400);
+
+                }, 4000);
+
+            }
+
+            if (typeof ejecutarOpcion === 'function') {
+
+                ejecutarOpcion(1);
+
+            }
+
+        }
+
+
+
+        if (document.readyState === 'complete') {
+
+            arrancarSistema();
+
+        } else {
+
+            window.addEventListener('load', arrancarSistema);
+
+        }
+
+    </script>
+
+
+
+    <!-- Tu cerebro intacto -->
+
+    <script src="app.js"></script>
+
+</body>
+
+</html>
+
